@@ -177,6 +177,7 @@ class MainActivity : AppCompatActivity() {
 
         val cookieManager = CookieManager.getInstance()
         cookieManager.setAcceptThirdPartyCookies(webView, !blockThirdPartyCookies)
+        cookieManager.setAcceptCookie(true)
 
         val webSettings = webView.settings
         webSettings.mediaPlaybackRequiresUserGesture = false
@@ -442,6 +443,20 @@ class MainActivity : AppCompatActivity() {
         loadSettings()
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        webView.stopLoading()
+
+        CookieManager.getInstance().removeAllCookies(null)
+        CookieManager.getInstance().flush()
+
+        webView.clearCache(true)
+        webView.clearHistory()
+        webView.clearFormData()
+
+        GeolocationPermissions.getInstance().clearAll()
+    }
+
     private fun startDownload(
         url: String,
         userAgent: String?
@@ -562,7 +577,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun isIpAddress(input: String): Boolean =
-        Regex("""^\d{1,3}(\.\d{1,3}){3}$""").matches(input)
+        Regex(""""^\d{1,3}(\.\d{1,3}){3}$"""").matches(input)
 
     private fun isLocalhost(input: String): Boolean =
         input.equals("localhost", true) || input.startsWith("localhost:")
@@ -570,7 +585,7 @@ class MainActivity : AppCompatActivity() {
     private fun looksLikeDomain(input: String): Boolean =
         input.contains('.') &&
                 !input.contains(' ') &&
-                Regex("""^[a-zA-Z0-9.-]+(:\d+)?(/.*)?$""").matches(input)
+                Regex(""""^[a-zA-Z0-9.-]+(:\d+)?(/.*)?$"""").matches(input)
 
     private fun buildSearchUrl(query: String): String {
         val encoded = URLEncoder.encode(query, "UTF-8")
