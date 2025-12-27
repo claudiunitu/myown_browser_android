@@ -3,4 +3,17 @@
     <string name="search_or_type_web_address">Search or type web address</string>
     <string name="go">Go</string>
     <string name="settings">Settings</string>
+    <string name="home_page">Home Page</string>
+    <string name="update_list_url">Update List URL</string>
+    <string name="update_now">Update Now</string>
+    <string name="global_permissions">Global Permissions</string>
+    <string name="allow_camera">Allow Camera</string>
+    <string name="allow_microphone">Allow Microphone</string>
+    <string name="allow_location">Allow Location</string>
+    <string name="block_third_party_cookies">Block Third-Party Cookies</string>
+    <string name="enable_ad_blocker">Enable Ad Blocker</string>
+    <string name="ad_blocking_hosts_one_per_line">Ad-blocking hosts (one per line)</string>
+    <string name="save">Save</string>
+    <string name="clear_all">Clear All</string>
+    <string name="remove">Remove</string>
 </resources>
